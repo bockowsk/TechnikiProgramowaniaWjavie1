@@ -2,6 +2,7 @@ package info.bockowsk;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class LyricsCounter {
 
@@ -52,6 +53,51 @@ public class LyricsCounter {
 
     public static void main(String[] args) {
         HashMap<String, LinkedList<String>> wordBegins = new HashMap<>();
+        // pobranie slow
+        String[] slowa=getWordsInLyrics();
+        //nie jest powiedzane czy case sensitive, ale zakladam, ze tak, tutaj moznaby bylo sie tym zajac, ale bedzie to zrobione nizej
+        // stworzenie mapy z keys jako pierwsza litera, a value bedace nested collection (e.g. LinkedList)
+        for (String s: slowa) {
+            //tutaj zajmujemy sie wielkoscia liter
+            String litera=String.valueOf(s.charAt(0)).toLowerCase();
+            if (wordBegins.containsKey(litera)) {
+                wordBegins.get(litera).add(s);
+            }
+            else {
+                wordBegins.put(litera,new LinkedList<String>());
+                wordBegins.get(litera).add(s);
+            }
+        }
+        //wyszukanie liter/litery z najwieksza liczba wyrazow
+        ArrayList<String> najczestsze=new ArrayList<String>();
+        //zmienna do testow
+        int maksymalna=0;
+        for (String l: wordBegins.keySet()) {
+            int wielkosc=wordBegins.get(l).size();
+            //porownanie wielkosci
+            if (wielkosc> maksymalna) {
+                najczestsze.clear();
+                najczestsze.add(l);
+                //update maksymalnej
+                maksymalna=wielkosc;
+            }
+            // uwzglednienie warunka, gdy jest taka sama liczba wystapien
+            else if (wielkosc == maksymalna) {
+                najczestsze.add(l);
+            }
+        }
+        //wyswietlenie wyrazow dla litery z najwieksza liczba powtorzen
+        for (String s: najczestsze) {
+            System.out.println("Litera na ktora najczesciej zaczynaja sie slowa:");
+            System.out.println(wordBegins.get(s));
+            System.out.println("---");
+        }
+        //do testow:
+        for (String s: wordBegins.keySet()) {
+            int rozmiar=wordBegins.get(s).size();
+            String doWyswietlenia=String.format("LITERA:\t%s\t WYSTAPIEN:\t%d\nWSZYSTKIE:\n%s\n\n",s,rozmiar,wordBegins.get(s));
+            System.out.print(doWyswietlenia);
+        }
     }
 }
 
