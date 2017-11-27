@@ -1,0 +1,5 @@
+./source/ - pliki zrodlowe
+./classes/ - skompilowane pliki 
+
+start.sh - plik do kompilacji *.java z package info.bockowsk (przed wykonaniem chmod u+x ./start.sh lub /bin/bash ./start.sh)
+
