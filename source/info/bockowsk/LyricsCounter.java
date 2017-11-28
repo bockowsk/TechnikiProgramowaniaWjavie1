@@ -55,20 +55,23 @@ public class LyricsCounter {
         HashMap<String, LinkedList<String>> wordBegins = new HashMap<>();
         // pobranie slow
         String[] slowa=getWordsInLyrics();
-        //nie jest powiedzane czy case sensitive, ale zakladam, ze tak, tutaj moznaby bylo sie tym zajac, ale bedzie to zrobione nizej
+        //nie jest powiedzane czy case insensitive, ale zakladam, ze tak, tutaj moznaby bylo sie tym zajac, ale bedzie to zrobione nizej
         // stworzenie mapy z keys jako pierwsza litera, a value bedace nested collection (e.g. LinkedList)
         for (String s: slowa) {
-            //tutaj zajmujemy sie wielkoscia liter
+            // tutaj zajmujemy sie wielkoscia liter
             String litera=String.valueOf(s.charAt(0)).toLowerCase();
+            //moznaby bylo wykozystac preinitialization i stworzyc HashMap ze wszystkimi literami, ale bedzie to ad-hoc
+            // dla juz istniejacych
             if (wordBegins.containsKey(litera)) {
                 wordBegins.get(litera).add(s);
             }
+            //jesli nie ma to tworzy LinkedList i dodaje pierwszy element
             else {
                 wordBegins.put(litera,new LinkedList<String>());
                 wordBegins.get(litera).add(s);
             }
         }
-        //wyszukanie liter/litery z najwieksza liczba wyrazow
+        //wyszukanie liter/litery z najwieksza liczba wyrazow (bo przeciez moze byc wiecej niz 1)
         ArrayList<String> najczestsze=new ArrayList<String>();
         //zmienna do testow
         int maksymalna=0;
@@ -76,6 +79,7 @@ public class LyricsCounter {
             int wielkosc=wordBegins.get(l).size();
             //porownanie wielkosci
             if (wielkosc> maksymalna) {
+                // czyscimy, dodajemy nowa, zmieniamy wartosc maksymalnej liczby wyrazow
                 najczestsze.clear();
                 najczestsze.add(l);
                 //update maksymalnej
@@ -83,6 +87,7 @@ public class LyricsCounter {
             }
             // uwzglednienie warunka, gdy jest taka sama liczba wystapien
             else if (wielkosc == maksymalna) {
+                // po prostu dodajemy kolejna litere
                 najczestsze.add(l);
             }
         }
@@ -92,7 +97,7 @@ public class LyricsCounter {
             System.out.println(wordBegins.get(s));
             System.out.println("---");
         }
-        //do testow:
+        //opcjonalne, dla testu. Wyswietlanie wszystkich liter z wystepujacmi wyrazami
         for (String s: wordBegins.keySet()) {
             int rozmiar=wordBegins.get(s).size();
             String doWyswietlenia=String.format("LITERA:\t%s\t WYSTAPIEN:\t%d\nWSZYSTKIE:\n%s\n\n",s,rozmiar,wordBegins.get(s));
