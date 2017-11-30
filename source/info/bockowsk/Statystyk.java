@@ -9,8 +9,8 @@ import java.util.LinkedList;
 //
 class Statystyk <T extends Book & Serializable> {
 
-    static <U extends Book & Serializable> ArrayList<String> najczestsze(U t) {
-        String[] slowa=t.tresc.split("\\W+");
+    static <U extends Book & Serializable> HashMap<String,LinkedList<String>> najczestsze(U u) {
+        String[] slowa=u.tresc.split("\\W+");
         HashMap<String,LinkedList<String>> mapa1=new HashMap<String,LinkedList<String>>();
         for (String s: slowa) {
             String litera=String.valueOf(s.charAt(0)).toLowerCase();
@@ -35,26 +35,30 @@ class Statystyk <T extends Book & Serializable> {
                 najczestsze.add(l);
             }
         }
-        return najczestsze;
+        HashMap<String,LinkedList<String>> mapa2=new HashMap<String,LinkedList<String>>();
+        for (String s: najczestsze) {
+            mapa2.put(u.tytul+": "+s,mapa1.get(s));
+        }
+        return mapa2;
     }
     
     public static void main(String[] args) {
         Ebook ksiazka1=new Ebook("Mark Lutz", "Wprowadzenie Python", "Helion");
         Ebook ksiazka2=new Ebook("Stephen Kochan", "Programming C", "Sams Publishing");
         
-        ArrayList<ArrayList<String>> najczestsze=new ArrayList<ArrayList<String>>();
+        ArrayList<HashMap<String,LinkedList<String>>> najczestsze=new ArrayList<HashMap<String,LinkedList<String>>>();
         najczestsze.add(najczestsze(ksiazka1));najczestsze.add(najczestsze(ksiazka2));
-        
-        for (ArrayList<String> a: najczestsze) {
-            for (String s: a) {
+
+        for (HashMap<String,LinkedList<String>> m: najczestsze) {
+            for (String s: m.keySet()) {
                 System.out.println(s);
+                System.out.println(m.get(s));
             }
         }
-
     }
+}
 
 /* TODO:
- * - stworzyc comparable dla Book zeby sie dalo sortowac (na podstawie liter, ktory ma najwiecej slow z wystapieniami)
- * - zaimplementowac tutaj zapisywanie obiektow
+ * - metoda z HashSet (unikalne) stworzyc comparable dla Book zeby sie dalo sortowac (na podstawie liter, ktory ma najwiecej slow z wystapieniami)
+ * - metoda z comparable
  */
-}
