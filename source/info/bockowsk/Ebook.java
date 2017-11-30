@@ -39,6 +39,14 @@ class Ebook extends Book implements Comparable<Ebook> {
     public String toString() {
         return autor+" : "+tytul;
     }
+    public int hashCode() {
+        return tresc.hashCode();
+    }
+    public boolean equals(Object ebook) {
+        Ebook e=(Ebook)ebook;
+        return tresc.equals(e.tresc);
+    }
+    
     public static void main(String args[]) {
         Ebook ksiazka1=new Ebook("Mark Lutz", "Wprowadzenie Python", "Helion");
         System.out.println(ksiazka1.tresc);

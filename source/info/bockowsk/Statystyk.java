@@ -1,16 +1,16 @@
 package info.bockowsk;
 
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-//generic type, ktory bedzie uzywal obiektow klay Book oraz implementowal interfejs Serializable
+//generic type, ktory bedzie uzywal obiektow klay Book oraz implementowal interfejs Comparable 
 //
-class Statystyk <T extends Book & Serializable> {
+class Statystyk <T extends Book & Comparable> {
 
-    static <U extends Book & Serializable> HashMap<String,LinkedList<String>> najczestsze(U u) {
+    static <U extends Book & Comparable > HashMap<String,LinkedList<String>> najczestsze(U u) {
         String[] slowa=u.tresc.split("\\W+");
         HashMap<String,LinkedList<String>> mapa1=new HashMap<String,LinkedList<String>>();
         for (String s: slowa) {
@@ -47,9 +47,11 @@ class Statystyk <T extends Book & Serializable> {
         Ebook ksiazka1=new Ebook("Mark Lutz", "Wprowadzenie Python", "Helion");
         Ebook ksiazka2=new Ebook("Stephen Kochan", "Programming C", "Sams Publishing");
         Ebook ksiazka3=new Ebook("Randal Schwartz","Learning Perl","O'Reilly");
+        Ebook ksiazka4=new Ebook("Olimp Bockowski","Plagiat","w piwnicy");
         
         ArrayList<HashMap<String,LinkedList<String>>> najczestsze=new ArrayList<HashMap<String,LinkedList<String>>>();
-        najczestsze.add(najczestsze(ksiazka1));najczestsze.add(najczestsze(ksiazka2));najczestsze.add(najczestsze(ksiazka3));
+        najczestsze.add(najczestsze(ksiazka1));najczestsze.add(najczestsze(ksiazka2));
+        najczestsze.add(najczestsze(ksiazka3));najczestsze.add(najczestsze(ksiazka4));
 
 
         for (HashMap<String,LinkedList<String>> m: najczestsze) {
@@ -60,7 +62,8 @@ class Statystyk <T extends Book & Serializable> {
         }
         ArrayList<Ebook> wszystkie=new ArrayList<Ebook>();
         System.out.println("Wszystkie ksiazki nieposortowane.");
-        wszystkie.add(ksiazka1);wszystkie.add(ksiazka2);wszystkie.add(ksiazka3);
+        wszystkie.add(ksiazka1);wszystkie.add(ksiazka2);wszystkie.add(ksiazka3);wszystkie.add(ksiazka4);
+
         for (Ebook e: wszystkie) {
             System.out.println("\t"+e);
         }
@@ -69,11 +72,16 @@ class Statystyk <T extends Book & Serializable> {
         for (Ebook e: wszystkie) {
             System.out.println("\t"+e);
         }
-        
+//duplikaty
+        HashSet<Ebook> zbior1=new HashSet<Ebook>();
+        for (Ebook b: wszystkie) {
+            if (!zbior1.add(b)) {
+                for (Ebook b2: wszystkie) {
+                    if (b.hashCode() == b2.hashCode() && b.equals(b2) && !(b.tytul.equals(b2.tytul))) {
+                        System.out.println(b.autor+":"+b.tytul+" , "+b2.autor+":"+b2.tytul);
+                    }
+                }
+            }
+        }
     }
 }
-
-/* TODO:
- * - metoda z HashSet (unikalne) stworzyc comparable dla Book zeby sie dalo sortowac (na podstawie liter, ktory ma najwiecej slow z wystapieniami)
- * - metoda z comparable
- */
