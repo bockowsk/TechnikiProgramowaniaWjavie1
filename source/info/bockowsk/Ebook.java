@@ -2,7 +2,7 @@ package info.bockowsk;
 
 import java.io.*;
 
-class Ebook extends Book {
+class Ebook extends Book implements Comparable<Ebook> {
 
     Ebook(String a, String t, String w) {
         super(a,t,w);
@@ -22,6 +22,22 @@ class Ebook extends Book {
         catch (IOException ex2) {
             ex2.printStackTrace();
         }
+    }
+    public int compareTo(Ebook b) {
+        int b1=tresc.length();
+        int b2=b.tresc.length();
+        if (b1>b2) {
+            return -1;
+        }
+        else if (b1<b2) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    public String toString() {
+        return autor+" : "+tytul;
     }
     public static void main(String args[]) {
         Ebook ksiazka1=new Ebook("Mark Lutz", "Wprowadzenie Python", "Helion");

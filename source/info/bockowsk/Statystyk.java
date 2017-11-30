@@ -1,6 +1,7 @@
 package info.bockowsk;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -45,16 +46,30 @@ class Statystyk <T extends Book & Serializable> {
     public static void main(String[] args) {
         Ebook ksiazka1=new Ebook("Mark Lutz", "Wprowadzenie Python", "Helion");
         Ebook ksiazka2=new Ebook("Stephen Kochan", "Programming C", "Sams Publishing");
+        Ebook ksiazka3=new Ebook("Randal Schwartz","Learning Perl","O'Reilly");
         
         ArrayList<HashMap<String,LinkedList<String>>> najczestsze=new ArrayList<HashMap<String,LinkedList<String>>>();
-        najczestsze.add(najczestsze(ksiazka1));najczestsze.add(najczestsze(ksiazka2));
+        najczestsze.add(najczestsze(ksiazka1));najczestsze.add(najczestsze(ksiazka2));najczestsze.add(najczestsze(ksiazka3));
+
 
         for (HashMap<String,LinkedList<String>> m: najczestsze) {
             for (String s: m.keySet()) {
                 System.out.println(s);
-                System.out.println(m.get(s));
+                System.out.println("\t"+m.get(s));
             }
         }
+        ArrayList<Ebook> wszystkie=new ArrayList<Ebook>();
+        System.out.println("Wszystkie ksiazki nieposortowane.");
+        wszystkie.add(ksiazka1);wszystkie.add(ksiazka2);wszystkie.add(ksiazka3);
+        for (Ebook e: wszystkie) {
+            System.out.println("\t"+e);
+        }
+        System.out.println("Wszystkie ksiazki po sortowaniu.");
+        Collections.sort(wszystkie);
+        for (Ebook e: wszystkie) {
+            System.out.println("\t"+e);
+        }
+        
     }
 }
 
