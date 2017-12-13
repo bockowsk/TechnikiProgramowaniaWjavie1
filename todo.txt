@@ -1,26 +1,38 @@
 do sprawdzenia:
 
-1. test stworzenia nowego Pull Requesta
+QUSTION 1. test stworzenia nowego Pull Requesta
 	jesli dobrze rozumiem, to PR moze istniec tylko jak ktos stworzy nowy branch i wysle jakis commit? 
 	A moze ktos moze: a) zrobic lokalnie zmiany w master, b) git push origin master ?
 	
-- wchodzi na to, ze mozna z byle czego, ale topic branch jest lepsza opcja bo mozna "follow-ups" 
+ANSWER 1 
+	- wchodzi na to, ze mozna z byle czego, ale topic branch jest lepsza opcja bo mozna "follow-ups" 
 	https://help.github.com/articles/about-pull-requests/
+	ale ogolnie sa sa dwa przypadki: 
+	a) contributor ma write access do projektu, wtedy napewno musi miec nowy branch (jak nie ma to przycisk "create pull request" nie jest aktywny),
+	b) constributor nie ma write access, to wtedy moze i da sie wrzucic z master do master jak uzywa sie fork'a? 
+	(* przypadek pierwszy bedziemy stosowac w zespole, bo mamy repositories w organizacji, jak pocwiczymy, to pozniej sie zrobi z fork'ami)
 
-2. czy PR moze byc otwarty jako dyskusja? jaki wtedy jest flow? powiedzialbym, ze PR z nowym branchem (jeszcze pustum), a pozniej praca w nim i finalnie merge?
+QUESTION 2.  czy PR moze byc otwarty jako dyskusja? jaki wtedy jest flow? powiedzialbym, ze PR z nowym branchem (jeszcze pustum), a pozniej praca w nim i finalnie merge?
 
-- wychodzi na to, ze sa follow-ups
+ANSWER 2
+	- jak wyzej + wychodzi na to, ze sa follow-ups (czyli w tym samym branchu kontunuuje i pushuje, a to sie dospisuje). Nie wiem jak z fork'eim, bo jak tak odroznic jesli
+	jest z master do master? (bo jak nowy branch to ok)
 
-DONE 3. sprawdzic / nauczyc sie jak dziala stagging, commiting i pushing new branch z Eclipsa (bo z CLI wiadomo)
+QUESTION 3. sprawdzic / nauczyc sie jak dziala stagging, commiting i pushing new branch z Eclipsa (bo z CLI wiadomo)
 
-DONE 4. Ustalic jak poradzic sobie z sytuacja, ktorea stworzyl Pan W.Fracz, a mianowicie: mialem PR z nowymi commit'ami, a on dodal tam komentarze co zmienic, wiec musze zrobic follow-ups
-Nie wiem jak to kontynuowac, zanim spradze, sprobuje przeczytac cos na necie + Chapter 6 z ksiazki 'pro git'
+ANSWER 3 zrobione i przecwiczone
 
-- ok znalezione w ebook'u "Pro git" 
-"Now the contributor can see what they need to do in order to get their change accepted. Luckily this is very straightforward...
-with GitHub you simply commit to the topic branch again and push, which will automatically update the Pull Request. 
-In Pull Request final you can also see that the old code comment has been collapsed in the updated Pull Request, since it was made on a line that has since been changed.
-Adding commits to an existing Pull Request doesn’t trigger a notification, so ... leave a comment to inform the project owner that he made the requested change."
+QUESTIONS 4. Ustalic jak poradzic sobie z sytuacja, ktorea stworzyl Pan W.Fracz, a mianowicie: 
+	mialem PR z nowymi commit'ami, a on dodal tam komentarze co zmienic, wiec musze zrobic follow-ups
+	Nie wiem jak to kontynuowac, zanim spradze, sprobuje przeczytac cos na necie + Chapter 6 z ksiazki 'pro git'
 
-DONE 5. test stagging w Eclipse 
-- wychodzi na to, ze 'add to index' robi za git add 
+ANSWER 4
+	- ok znalezione w ebook'u "Pro git" - po prostu pushuje sie dalej do tego samego. 
+	"Now the contributor can see what they need to do in order to get their change accepted. Luckily this is very straightforward...
+	with GitHub you simply commit to the topic branch again and push, which will automatically update the Pull Request. 
+	In Pull Request final you can also see that the old code comment has been collapsed in the updated Pull Request, since it was made on a line that has since been changed.
+	Adding commits to an existing Pull Request doesn’t trigger a notification, so ... leave a comment to inform the project owner that he made the requested change."
+
+QUESTION 5 test gdzie jest stagging w Eclipse 
+
+ANSWER 5 wychodzi na to, ze 'add to index' robi za git add 
