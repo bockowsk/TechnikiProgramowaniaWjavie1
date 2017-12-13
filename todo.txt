@@ -15,3 +15,6 @@ do sprawdzenia:
 
 4. Ustalic jak poradzic sobie z sytuacja, ktorea stworzyl Pan W.Fracz, a mianowicie: mialem PR z nowymi commit'ami, a on dodal tam komentarze co zmienic, wiec musze zrobic follow-ups
 Nie wiem jak to kontynuowac, zanim spradze, sprobuje przeczytac cos na necie + Chapter 6 z ksiazki 'pro git'
+
+5. test stagging w Eclipse 
+- wychodzi na to, ze 'add to index' robi za git add 
