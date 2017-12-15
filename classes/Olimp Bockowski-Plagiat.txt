@@ -1,0 +1,16 @@
+Computers are really very dumb machines indeed because they do only what they are
+told to do. Most computer systems perform their operations on a very primitive level.
+For example, most computers know how to add one to a number or how to test
+whether a number is equal to zero.The sophistication of these basic operations usually
+does not go much further than that.The basic operations of a computer system form
+what is known as the computer’s instruction set.
+To solve a problem using a computer, you must express the solution to the problem
+in terms of the instructions of the particular computer. A computer program is just a col-
+lection of the instructions necessary to solve a specific problem.The approach or method
+that is used to solve the problem is known as an algorithm. For example, if you want to
+develop a program that tests if a number is odd or even, the set of statements that solves
+the problem becomes the program.The method that is used to test if the number is even
+or odd is the algorithm. Normally, to develop a program to solve a particular problem,
+you first express the solution to the problem in terms of an algorithm and then develop
+a program that implements that algorithm. So, the algorithm for solving the even/odd
+problem might be expressed as follows: First, divide the number by two.

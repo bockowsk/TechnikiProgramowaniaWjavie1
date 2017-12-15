@@ -1,0 +1,10 @@
+The full story behind this odd result has to do with the limitations of floating-point
+hardware and its inability to exactly represent some values in a limited number of bits.
+Because computer architecture is well beyond this book’s scope, though, we’ll finesse
+this by saying that all of the digits in the first output are really there in your computer’s
+floating-point hardware—it’s just that you’re not accustomed to seeing them. In fact,
+this is really just a display issue—the interactive prompt’s automatic result echo shows
+more digits than the print statement. If you don’t want to see all the digits, use print ;
+as the sidebar “str and repr Display Formats” on page 116 will explain, you’ll get a
+user-friendly display.
+Note, however, that not all values have so many digits to display:
